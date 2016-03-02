@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
   before_filter :load_survey, :only => [:show, :edit, :update]
 
   def index
-    @surveys = Survey::Survey.paginate(page: params[:page], per_page: 1)
+    @surveys = Survey::Survey.paginate(page: params[:page], per_page: 3)
   end
 
   def new
@@ -23,6 +23,7 @@ class SurveysController < ApplicationController
   end
 
   def show
+    
   end
 
   def update
