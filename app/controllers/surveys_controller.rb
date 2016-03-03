@@ -23,7 +23,7 @@ class SurveysController < ApplicationController
   end
 
   def show
-    
+   @survey = Survey::Survey.find(params[:id]) 
   end
 
   def update
