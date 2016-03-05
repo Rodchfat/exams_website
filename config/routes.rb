@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  resources :quizzes
+  #get 'quiz/index'
+
+  #get 'quiz/new'
+
+  #get 'quiz/create'
+
+  #get 'quiz/edit'
+
+  #get 'quiz/update'
+
   resources :users
   get 'pages/home'
 
@@ -8,7 +19,8 @@ Rails.application.routes.draw do
 
   get 'pages/resources'
   resources :surveys
-
+  resources :quizzes
+  
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
