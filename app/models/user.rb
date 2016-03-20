@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
  
-    has_surveys
+    
     validates :username, presence: true,
 uniqueness: { case_sensitive: false },
 length: { minimum: 3, maximum: 25 }

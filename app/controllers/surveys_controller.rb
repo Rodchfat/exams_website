@@ -4,6 +4,7 @@ class SurveysController < ApplicationController
 
   def index
     @surveys = Survey::Survey.paginate(page: params[:page], per_page: 3)
+    #@surveys = Survey::Survey.all
   end
 
   def new
