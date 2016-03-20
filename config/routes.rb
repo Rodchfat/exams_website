@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   get 'pages/resources'
   resources :surveys
-  resources :quizzes
   
   
   # The priority is based upon order of creation: first created -> highest priority.

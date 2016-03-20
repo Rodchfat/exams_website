@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-    has_quizzes
+ 
     has_surveys
     validates :username, presence: true,
 uniqueness: { case_sensitive: false },
