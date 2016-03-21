@@ -11,6 +11,7 @@ class SurveysController < ApplicationController
   end
 
   def create
+    debugger
     @survey = Survey::Survey.new(survey_params)
     if @survey.valid? && @survey.save
       default_redirect

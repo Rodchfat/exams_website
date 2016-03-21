@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   #get 'quiz/update'
 
-  resources :users
+  #resources :users
+  get 'signup', to: 'users#new'
+  resources :users, except: [:new]
   get 'pages/home'
 
   get 'pages/about'
