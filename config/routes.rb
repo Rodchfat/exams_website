@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :quizzes
+  #resources :quizzes
   #get 'quiz/index'
 
   #get 'quiz/new'
@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   #get 'quiz/update'
 
   #resources :users
-  get 'signup', to: 'users#new'
+  
   resources :users, except: [:new]
+  get 'signup', to: 'users#new'
+  
   get 'pages/home'
 
   get 'pages/about'
