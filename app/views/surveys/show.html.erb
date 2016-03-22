@@ -1,2 +1,10 @@
-<%= @sur %>
+<h1> showing selected Exam </h1>
 
+<p>
+Title: <%= @survey.name %>
+</p>
+<p>
+Description: <%= @survey.description %>
+</p>
+
+<%= link_to "back to surveys list", surveys_path %>

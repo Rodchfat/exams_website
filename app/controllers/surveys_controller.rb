@@ -1,6 +1,11 @@
 class SurveysController < ApplicationController
 
   before_filter :load_survey, :only => [:show, :edit, :update]
+  #before_action :set_article, only: [:edit, :update, :show, :destroy]
+  before_action :require_user, except: [:index, :show]
+  #before_action :require_same_user, only: [:edit, :update, :destroy]
+  before_action :user_admin, only: [:edit, :update, :destroy]
+
 
   def index
     @surveys = Survey::Survey.paginate(page: params[:page], per_page: 3)
@@ -12,8 +17,8 @@ class SurveysController < ApplicationController
   end
 
   def create
-    debugger
     @survey = Survey::Survey.new(survey_params)
+    @survey.user_id = current_user
     if @survey.valid? && @survey.save
       default_redirect
     else
@@ -25,12 +30,13 @@ class SurveysController < ApplicationController
   end
 
   def show
-   @survey = Survey::Survey.find(params[:id]) 
+   #@survey = Survey::Survey.find(params[:id]) 
   end
 
   def update
     if @survey.update_attributes(survey_params)
       default_redirect
+      #redirect_to survey_path(params[:id])
     else
       render :action => :edit
     end
@@ -52,6 +58,14 @@ class SurveysController < ApplicationController
 
   def params_whitelist
     params.require(:survey_survey).permit(Survey::Survey::AccessibleAttributes)
+  end
+  
+  def user_admin
+      if current_user != !current_user.admin?
+        redirect_to survey_path
+      else 
+        redirect_to surveys_path
+      end
   end
 
 end

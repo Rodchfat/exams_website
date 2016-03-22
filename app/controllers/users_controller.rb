@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :user_admin, only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -71,5 +72,12 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :email, :password)
+    end
+    
+    def user_admin
+      if current_user != @survey.user and !current_user.admin?
+      flash[:danger] = "You can only edit or delete your own surveys"
+      redirect_to root_path
+      end
     end
 end
