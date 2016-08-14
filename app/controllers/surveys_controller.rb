@@ -8,8 +8,8 @@ class SurveysController < ApplicationController
 
 
   def index
-    @surveys = Survey::Survey.paginate(page: params[:page], per_page: 3)
-    #@surveys = Survey::Survey.all
+    #@surveys = Survey::Survey.paginate(page: params[:page], per_page: 3)
+    @surveys = Survey::Survey.all
   end
 
   def new
@@ -30,7 +30,7 @@ class SurveysController < ApplicationController
   end
 
   def show
-   #@survey = Survey::Survey.find(params[:id]) 
+   @survey = Survey::Survey.find(params[:id]) 
   end
 
   def update

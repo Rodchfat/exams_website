@@ -1,10 +1,10 @@
-<h1> showing selected Exam </h1>
-
-<p>
-Title: <%= @survey.name %>
-</p>
-<p>
-Description: <%= @survey.description %>
-</p>
-
-<%= link_to "back to surveys list", surveys_path %>
+<% @survey.questions.each do |question| %>
+        <li>
+          <p><%= question.text %></p>
+          <%#= builder.hidden_field :question_id, :value => question.id %>
+          <% question.options.each do |option| %>
+            <%= builder.check_box :option_id, {}, option.id, nil %>
+            <%= option.text %> <br/ >
+          <% end -%>
+        </li>
+      <% end -%>

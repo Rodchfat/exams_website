@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   get 'pages/blog'
 
   get 'pages/resources'
-  resources :surveys
+  resources :surveys do 
+    resources :questions
+  end
   
   
   # The priority is based upon order of creation: first created -> highest priority.

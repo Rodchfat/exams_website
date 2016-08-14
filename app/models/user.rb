@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
  before_save { self.email = email.downcase }
+    has_surveys
     has_many :surveys
     has_secure_password
     validates :username, presence: true,
