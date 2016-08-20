@@ -24,7 +24,9 @@ Rails.application.routes.draw do
 
   get 'pages/resources'
   resources :surveys do 
-    resources :questions
+    resources :questions do 
+      resources :options
+    end
   end
   
   

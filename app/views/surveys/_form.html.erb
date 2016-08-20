@@ -29,7 +29,7 @@
   <div class="field">
     <ul>
       <%= f.fields_for :questions do |builder| %>
-          <%= render "question_fields", :f => builder %>
+          <%= render :partial => "question_fields", :locals => { :f => builder } %>
       <% end %>
     </ul>
     <br/ >

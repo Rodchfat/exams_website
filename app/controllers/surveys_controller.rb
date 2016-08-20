@@ -4,7 +4,7 @@ class SurveysController < ApplicationController
   #before_action :set_article, only: [:edit, :update, :show, :destroy]
   before_action :require_user, except: [:index, :show]
   #before_action :require_same_user, only: [:edit, :update, :destroy]
-  before_action :user_admin, only: [:edit, :update, :destroy]
+  before_action :user_admin, only: [:create, :edit, :update, :destroy]
 
 
   def index
@@ -13,7 +13,12 @@ class SurveysController < ApplicationController
   end
 
   def new
+    if user_admin
     @survey = Survey::Survey.new
+    else
+    flash[:danger] = " You do not have right to create a Quiz"
+    redirect_to surveys_path
+  end
   end
 
   def create
@@ -30,7 +35,7 @@ class SurveysController < ApplicationController
   end
 
   def show
-   @survey = Survey::Survey.find(params[:id]) 
+   
   end
 
   def update
@@ -62,6 +67,7 @@ class SurveysController < ApplicationController
   
   def user_admin
       if current_user != !current_user.admin?
+        #flash[:danger] = " You do not have right to create a Quiz"
         redirect_to survey_path
       else 
         redirect_to surveys_path
